@@ -28,48 +28,50 @@ std::map<uint8_t, long> lastTime;
 // Keyboard default layout
 uint8_t keys[rowsCount][colCount] = {
   {KEY_ESC, 'q', 'w', 'e', 'r', 't'},
-  {KEY_TAB, 'a', 's', 'd', 'f', 'g'}, // Tab not working, TODO: Try with bleKeyboard.write
+  {KEY_TAB, 'a', 's', 'd', 'f', 'g'},
   {KEY_LEFT_SHIFT, 'z', 'x', 'c', 'v', 'b'},
-  {KEY_LEFT_CTRL, KEY_LEFT_ALT, 'L', ' ', '*', '*'}
+  {'*', '*', '*', KEY_LEFT_CTRL, 'L', KEY_RETURN}
 };
 
 uint8_t layer1[rowsCount][colCount] = {
   {'1', '2', '3', '4', '5', '6'},
-  {'`', '*', '*', '*', '*', '*'}, // Backticks not working, TODO: Try with bleKeyboard.write
+  {'`', '*', '*', '*', '*', '*'},
   {KEY_LEFT_SHIFT, '*', '*', '*', '*', '*'},
-  {KEY_LEFT_CTRL, KEY_LEFT_ALT, 'L', ' ', '*', '*'}
+  {'*', '*', '*', KEY_LEFT_GUI, 'L', 'X'}
+};
+
+uint8_t layer2[rowsCount][colCount] = {
+  {KEY_F1, KEY_F2, KEY_F3, KEY_F4, KEY_F5, KEY_F6},
+  {'*', '*', '*', '*', '*', '*'},
+  {'*', '*', '*', '*', '*', '*'},
+  {'*', '*', '*', '*', 'L', 'X'},
 };
 
 // SPECIAL KEYS
 bool specialKeysStatus[] = {false, false, false, false}; // CTRL, ALT, SHIFT, LAYER
-std::set<uint8_t> specialKeys = {KEY_LEFT_CTRL, KEY_LEFT_ALT, KEY_LEFT_SHIFT, 'L', '*' };
+std::set<uint8_t> specialKeys = {KEY_LEFT_CTRL, KEY_LEFT_ALT, KEY_LEFT_SHIFT, 'L', '*', 'X'};
 
 void checkPriorityKeys () {
   digitalWrite(ROW_4, LOW);
   // Check Layer
-  if (!digitalRead(COL_3) && !specialKeysStatus[3]) {
+  if (!digitalRead(COL_5) && !specialKeysStatus[3]) {
     specialKeysStatus[3] = true;
   } else {
-    if (digitalRead(COL_3)) specialKeysStatus[3] = false;
+    if (digitalRead(COL_5)) specialKeysStatus[3] = false;
   }
 
   // Check Ctrl
-  if (!digitalRead(COL_1) && !specialKeysStatus[0]) {
+  if (!digitalRead(COL_4) && !specialKeysStatus[0]) {
     bleKeyboard.press(KEY_LEFT_CTRL);
     specialKeysStatus[0] = true;
   } else {
-    if (digitalRead(COL_1) && specialKeysStatus[0]) bleKeyboard.release(KEY_LEFT_CTRL);
+    if (digitalRead(COL_4) && specialKeysStatus[0]) bleKeyboard.release(KEY_LEFT_CTRL);
     specialKeysStatus[0] = false;
   }
-  // Check ALT
-  if (!digitalRead(COL_2) && !specialKeysStatus[1]) {
-    bleKeyboard.press(KEY_LEFT_ALT);
-    specialKeysStatus[1] = true;
-  } else {
-    if (digitalRead(COL_2) && specialKeysStatus[1]) bleKeyboard.release(KEY_LEFT_ALT);
-    specialKeysStatus[1] = false;
-  }
-  digitalWrite(ROW_4, HIGH); // Check Shift
+
+  digitalWrite(ROW_4, HIGH); 
+  
+  // Check Shift
   digitalWrite(ROW_3, LOW);
   if (!digitalRead(COL_1) && !specialKeysStatus[2]) {
     bleKeyboard.press(KEY_LEFT_SHIFT);

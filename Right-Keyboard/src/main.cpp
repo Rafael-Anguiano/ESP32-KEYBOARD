@@ -29,20 +29,28 @@ std::map<uint8_t, long> lastTime;
 uint8_t keys[rowsCount][colCount] = {
   {'y', 'u', 'i', 'o', 'p', KEY_BACKSPACE},
   {'h', 'j', 'k', 'l', ';', '\''},
-  {'n', 'm', ',', '.', '/', KEY_RETURN},
-  {' ', 'L', '*', '*', '*', '*'}
+  {'n', 'm', ',', '.', '/', KEY_LEFT_ALT},
+  {' ', 'L', 'X', '*', '*', '*'}
 };
 
 uint8_t layer1[rowsCount][colCount] = {
   {'7', '8', '9', '0', '-', '='},
   {KEY_LEFT_ARROW, KEY_DOWN_ARROW, KEY_UP_ARROW, KEY_RIGHT_ARROW, '*', '\\'},
-  {KEY_HOME, KEY_END, KEY_PAGE_UP, KEY_PAGE_DOWN, '*', KEY_DELETE},
-  {' ', 'L', '*', '*', '*', '*'}
+  {KEY_HOME, KEY_END, KEY_PAGE_UP, KEY_PAGE_DOWN, '*', '*'},
+  {' ', 'L',  KEY_LEFT_GUI, '*', '*', '*'}
+};
+
+
+uint8_t layer2[rowsCount][colCount] = {
+  {KEY_F7, KEY_F8, KEY_F9, KEY_F10, KEY_F11, KEY_F12},
+  {'*', KEY_MEDIA_VOLUME_DOWN, KEY_MEDIA_VOLUME_UP, KEY_MEDIA_MUTE, '*', '*', '*'},
+  {'*', '*', '*', '*', '*', '*'},
+  {' ', 'L', 'X', '*', '*', '*'},
 };
 
 // SPECIAL KEYS
 bool specialKeysStatus[] = { false, false}; // LAYER, LAYER2
-std::set<uint8_t> specialKeys = {'L', '*' };
+std::set<uint8_t> specialKeys = {'L', '*', 'X'};
 
 void checkPriorityKeys () {
   digitalWrite(ROW_4, LOW);
