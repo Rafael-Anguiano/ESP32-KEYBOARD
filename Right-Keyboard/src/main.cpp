@@ -14,7 +14,7 @@
 #define COL_5 14
 #define COL_6 12
 // Constants
-const int debounceTime = 250;
+const int debounceTime = 160;
 const int columns[] = {COL_1, COL_2, COL_3, COL_4, COL_5, COL_6};
 const int rows[] = {ROW_1, ROW_2, ROW_3, ROW_4};
 const int rowsCount = 4;
