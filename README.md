@@ -19,6 +19,6 @@ Approach of a Corne Keyboard made wireless by using the ESP32 as microcontroller
 
 
 ## Made and Designed by:
-- Rafael Anguiano 
-- Ramón Meza 
-- Joaquín Meza
+- [Rafael Anguiano](https://github.com/Rafael-Anguiano)
+- [Ramón Meza](https://github.com/RAMF-Meza)
+- [Joaquín Meza](https://github.com/Joaquin-Meza)
