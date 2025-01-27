@@ -54,7 +54,8 @@ void checkPriorityKeys()
     digitalWrite(ROW_4, LOW);
     if (!digitalRead(COL_2) && !digitalRead(COL_3))
     {
-        bleKeyboard.press(KEY_LEFT_GUI);
+        if (!guiPressed)
+            bleKeyboard.press(KEY_LEFT_GUI);
         guiPressed = true;
     }
     else
@@ -90,7 +91,8 @@ void checkPriorityKeys()
     digitalWrite(ROW_3, LOW);
     if (!digitalRead(COL_6) && !layer1Pressed && !layer2Pressed)
     {
-        bleKeyboard.press(KEY_LEFT_ALT);
+        if (!altPressed)
+            bleKeyboard.press(KEY_LEFT_ALT);
         altPressed = true;
     }
     else

@@ -50,7 +50,8 @@ void checkPriorityKeys()
     // Check layer and GUI
     if (!digitalRead(COL_5) && !digitalRead(COL_4))
     {
-        bleKeyboard.press(KEY_LEFT_GUI);
+        if (!guiPressed)
+            bleKeyboard.press(KEY_LEFT_GUI);
         guiPressed = true;
     }
     else
@@ -74,7 +75,8 @@ void checkPriorityKeys()
     // Check Ctrl
     if (!digitalRead(COL_4) && !ctrlPressed && !guiPressed)
     {
-        bleKeyboard.press(KEY_LEFT_CTRL);
+        if (!ctrlPressed)
+            bleKeyboard.press(KEY_LEFT_CTRL);
         ctrlPressed = true;
     }
     else
@@ -90,7 +92,8 @@ void checkPriorityKeys()
     digitalWrite(ROW_3, LOW);
     if (!digitalRead(COL_1) && !shiftPressed)
     {
-        bleKeyboard.press(KEY_LEFT_SHIFT);
+        if (!shiftPressed)
+            bleKeyboard.press(KEY_LEFT_SHIFT);
         shiftPressed = true;
     }
     else
