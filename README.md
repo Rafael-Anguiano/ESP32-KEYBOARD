@@ -63,7 +63,6 @@ In the [releases](https://github.com/Rafael-Anguiano/Wireless-Corne-Keyboard/rel
 
 ## Current Issues
 
-- Shift and Ctrl keys stay pressed sometimes.
 - The space between the keys has to be adjusted.
 - There is missing a case design for the keyboard.
 - There is missing a charging circuit for the batteries.
